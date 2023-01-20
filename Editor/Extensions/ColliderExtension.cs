@@ -94,6 +94,7 @@ namespace SMF.Editor.Extension
 				target.transform.Translate(Selection.activeTransform.position);
 
 				Selection.activeTransform.parent = target.transform;
+				Selection.activeGameObject = target;
 			}
 		}
 		#endif
