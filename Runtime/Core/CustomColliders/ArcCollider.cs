@@ -10,7 +10,8 @@ namespace SMF.Core
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ArcColliderFromBox : MonoBehaviour
+	[AddComponentMenu("Physics/ArcCollider")]
+	public class ArcCollider : MonoBehaviour
 	{
 		#if ODIN_INSPECTOR
 		// Start is called before the first frame update

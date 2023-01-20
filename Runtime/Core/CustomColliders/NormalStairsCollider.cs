@@ -10,6 +10,7 @@ namespace SMF.Core
 	/// <summary>
 	/// Component based on OdinInspector which allows for creating stairs colliders
 	/// </summary>
+	[AddComponentMenu("Physics/NormalStairsCollider")]
 	public class NormalStairsCollider : MonoBehaviour
 	{
 	#if ODIN_INSPECTOR
@@ -89,7 +90,7 @@ namespace SMF.Core
 		/// </summary>
 		[Button]
 		private void GenerateColliders()
-		{
+		{			
 			RemoveColliders();
 
 			GameObject collidersRootGO = new GameObject("CollidersRoot");
