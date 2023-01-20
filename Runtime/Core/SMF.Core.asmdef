@@ -1,7 +1,9 @@
 {
     "name": "SMF.Core",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:10b2f55ef819cd54581ccf3034ec30bf"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
