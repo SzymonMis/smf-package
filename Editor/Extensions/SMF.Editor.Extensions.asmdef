@@ -1,0 +1,19 @@
+{
+    "name": "SMF.Editor.Extensions",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e2a3fa78a94dfab4a963eb0db333f07e",
+        "GUID:10b2f55ef819cd54581ccf3034ec30bf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
