@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 #endif
 
-namespace SMF.Core
+namespace SMF.Extensions
 {
 	/// <summary>
 	/// Component based on OdinInspector which allows for creating stairs colliders
@@ -13,8 +13,7 @@ namespace SMF.Core
 	[AddComponentMenu("Physics/NormalStairsCollider")]
 	public class NormalStairsCollider : MonoBehaviour
 	{
-	#if ODIN_INSPECTOR
-
+		#if ODIN_INSPECTOR
 		/// <summary>
 		/// Parent of objects with stair colliders
 		/// </summary>

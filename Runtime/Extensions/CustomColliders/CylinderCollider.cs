@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 #endif
 
-namespace SMF.Core
+namespace SMF.Extensions
 {
 	/// <summary>
 	/// 
@@ -14,38 +14,69 @@ namespace SMF.Core
 	public class CylinderCollider : MonoBehaviour
 	{
 		#if ODIN_INSPECTOR
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[FoldoutGroup("References to gameobjects")]
 		[SerializeField]
 		Transform colliderRoot;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[FoldoutGroup("References to gameobjects")]
 		[SerializeField]
 		List<BoxCollider> colliders;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[SerializeField]
 		[OnValueChanged("OnBoxCountChange")]
 		CylinderColliderType colliderType;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[Header("Common option")]
 		[OnValueChanged("OnBoxCountChange")]
 		[SerializeField]
 		[Min(3)]
 		int boxCollidersCount = 4;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[OnValueChanged("OnOffsetChange")]
 		[SerializeField]
 		private Vector3 offset;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[OnValueChanged("OnChangeRadius")]
 		[SerializeField]
 		[Min(0f)]
 		private float radius = 1;
 
+		/// <summary>
+		/// 
+		/// </summary>
+		[Tooltip("")]
 		[OnValueChanged("OnChangeHeight")]
 		[SerializeField]
 		[Min(0f)]
 		private float height = 1;
-		
+
+		/// <summary>
+		/// 
+		/// </summary>
 		[Header("Empty inside cylinder:")]
 		[OnValueChanged("OnInnerRadisuChange")]
 		[SerializeField]
@@ -243,6 +274,9 @@ namespace SMF.Core
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private void OnChangeHeight()
 		{
 			if (colliders == null)
@@ -256,6 +290,9 @@ namespace SMF.Core
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private void OnOffsetChange()
 		{
 			if (colliderRoot == null)
@@ -264,6 +301,9 @@ namespace SMF.Core
 			colliderRoot.localPosition = offset;			
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private void OnInnerRadisuChange()
 		{
 			if (colliders == null)
@@ -291,14 +331,14 @@ namespace SMF.Core
 						col.size = size;
 						col.transform.localPosition = correctPos;
 
-						index++;
-							
+						index++;							
 					}
 					break;				
 			}
 		}
 #endif
 	}
+
 	public enum CylinderColliderType
 	{
 		FullCollider,

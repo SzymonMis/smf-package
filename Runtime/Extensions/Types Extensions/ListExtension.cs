@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace SMF.Extensions
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class ListExtension
 	{
 		/// <summary>
