@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace SMF.Extensions
 {
 	/// <summary>
-	/// 
+	/// Extension of System List Type
 	/// </summary>
 	public static class ListExtension
 	{
