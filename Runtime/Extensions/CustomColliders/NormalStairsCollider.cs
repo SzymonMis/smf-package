@@ -48,7 +48,7 @@ namespace SMF.Extensions
 		[FoldoutGroup("Stairs configuration")]
 		[SerializeField]
 		[Min(0)]
-		private float stepHeight;
+		private float stepHeight = 0.25f;
 
 		/// <summary>
 		/// Width of one step
@@ -58,7 +58,7 @@ namespace SMF.Extensions
 		[FoldoutGroup("Stairs configuration")]
 		[SerializeField]
 		[Min(0)]
-		private float stepWidth;
+		private float stepWidth = 1f;
 
 		/// <summary>
 		/// Depth of one step
@@ -68,7 +68,7 @@ namespace SMF.Extensions
 		[FoldoutGroup("Stairs configuration")]
 		[SerializeField]
 		[Min(0)]
-		private float stepDepth;
+		private float stepDepth = 0.25f;
 
 		/// <summary>
 		/// The distance by which the stair colliders overlap
