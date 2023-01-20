@@ -1,0 +1,15 @@
+{
+    "name": "com.szymon-mis.smf",
+    "version": "0.0.2",
+    "displayName": "SMF",
+    "description": "Collection of unity extensions that speed-ups working with an engine",
+    "unity": "2020.3",
+    "documentationUrl": "https://github.com/SzymonMis/sm-framework-package/blob/main/README.md",
+    "changelogUrl": "https://github.com/SzymonMis/sm-framework-package/blob/main/CHANGELOG.md",
+    "licensesUrl": "https://github.com/SzymonMis/sm-framework-package/blob/main/LICENSE.md",
+    "author": {
+        "name": "Szymon Miś",
+        "email": "hello@szymon-mis.pl",
+        "url": "https://szymon-mis.pl"
+    }
+}
