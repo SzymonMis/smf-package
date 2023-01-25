@@ -7,11 +7,12 @@ namespace SMF.Editor.Tools
     public class GroupGameObjectsByParameter : EditorWindow
     {
         public string NameCriteria;
-        public Component CommonComponent;
+        public string ParentName;
 
         private GroupingCriteria groupingMethod = GroupingCriteria.FirstPartOfName;
         private GroupingCriteria previousGroupingMethod;
         private List<GameObject> objectsMeetingCriteria;
+        private string previousNameCriteria;
 
         [MenuItem(itemName: "SMF Tools/Group GameObjects")]
         public static GroupGameObjectsByParameter Open()
@@ -21,19 +22,27 @@ namespace SMF.Editor.Tools
 
         private void OnGUI()
         {      
-            GUILayout.BeginVertical();
+            //GUILayout.BeginVertical();
             GUILayout.Space(10);
             {
-                previousGroupingMethod = groupingMethod;
-                groupingMethod = (GroupingCriteria)EditorGUILayout.EnumPopup("Grouping Criteria", groupingMethod);
-
                 GUILayout.BeginHorizontal();
                 {
+                    previousGroupingMethod = groupingMethod;
+                    GUILayout.Label("Grouping Criteria", GUILayout.ExpandWidth(true));
+                    groupingMethod = (GroupingCriteria)EditorGUILayout.EnumPopup(string.Empty, groupingMethod);
+                    
+                }
+                GUILayout.EndHorizontal();
+                GUILayout.Space(10);
+                GUILayout.BeginHorizontal();
+                {
+                    previousNameCriteria = NameCriteria;
+
                     switch (groupingMethod)
                     {
                         case GroupingCriteria.FirstPartOfName:
                             GUILayout.Label("Common Name Prefix");
-                            NameCriteria = GUILayout.TextField(NameCriteria);
+                            NameCriteria = GUILayout.TextField(NameCriteria, GUILayout.ExpandWidth(true));
                             break;
 
                         case GroupingCriteria.LastPartOfName:
@@ -45,20 +54,22 @@ namespace SMF.Editor.Tools
                             GUILayout.Label("Common Name Part");
                             NameCriteria = GUILayout.TextField(NameCriteria);
                             break;
-
-                        case GroupingCriteria.Script:
-                            GUILayout.Label("uninmplenmentedtdd");
-                            break;
                     }
                 }
                 GUILayout.EndHorizontal();
 
-                if (groupingMethod != previousGroupingMethod)
+                if (groupingMethod != previousGroupingMethod || NameCriteria != previousNameCriteria)
                 {
                     objectsMeetingCriteria = null;
                 }
+
+                if (ValidateString(NameCriteria) == false)
+                {
+                    GUILayout.Box("string can't be empty and must be atleast 3 characters long");
+                    return;
+                }
             }
-            GUILayout.EndVertical();
+            //GUILayout.EndVertical();
             GUILayout.Space(10);
 
             //GUILayout.BeginVertical();
@@ -70,7 +81,19 @@ namespace SMF.Editor.Tools
 
                 if (objectsMeetingCriteria != null)
                 {
-                    GUILayout.Box("Objects meeting criteria: " + objectsMeetingCriteria.Count);
+                    GUILayout.Box("Objects meeting criteria found: " + objectsMeetingCriteria.Count);
+                    GUILayout.Space(10);
+                }
+
+                if (objectsMeetingCriteria != null && objectsMeetingCriteria.Count > 0)
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        GUILayout.Label("Parent Name (optional)");
+                        ParentName = GUILayout.TextField(ParentName);
+                    }
+                    GUILayout.EndHorizontal();
+                    GUILayout.Space(10);
 
                     if (objectsMeetingCriteria.Count == 0)
                     {
@@ -82,22 +105,12 @@ namespace SMF.Editor.Tools
                         CombineUnderCommonParent();
                     }
                 }
-                else
-                {
-                    GUILayout.Box("string can't be empty and must be atleast 3 characters long");
-                }
             }
             //GUILayout.EndVertical();
         }
 
         private void FindObjectsMeetingCriteria()
         {
-            if (ValidateString(NameCriteria) == false)
-            {
-                objectsMeetingCriteria = null;
-                return;
-            }
-
             objectsMeetingCriteria = new List<GameObject>();
             GameObject[] allGameObjects = FindObjectsOfType<GameObject>(true);
             List<GameObject> allGameObjectsList = new List<GameObject>();
@@ -118,30 +131,40 @@ namespace SMF.Editor.Tools
                     allGameObjectsList = new List<GameObject>(allGameObjects);
                     objectsMeetingCriteria = allGameObjectsList.FindAll(x => x.name.Contains(NameCriteria));
                     break;
-
-                case GroupingCriteria.Script:
-                    break;
             }
         }
 
         private bool ValidateString(string text)
         {
             if (text == string.Empty || text.Length < 3)
+            {
                 return false;
-            else 
+            }
+            else
+            {
                 return true;
+            }
         }
 
         private void CombineUnderCommonParent()
         {
-            GameObject commonParent = new GameObject();
-            commonParent.transform.position = Vector3.zero;
-            commonParent.name = "Objects gropued by " + groupingMethod.ToString() + " = " + NameCriteria;
+            var parentName = ParentName == string.Empty ? "Grouped by " + groupingMethod.ToString() + " (" + NameCriteria + ')' : ParentName;
+            GameObject commonParent = GameObject.Find(parentName);
+
+            if (commonParent == null)
+            {
+                commonParent = new GameObject();
+                commonParent.transform.position = Vector3.zero;
+                commonParent.name = parentName;
+            }
 
             foreach (var go in objectsMeetingCriteria)
             {
+                if (go == commonParent) continue;
                 go.transform.parent = commonParent.transform;
             }
+
+            Selection.activeGameObject = commonParent;
         }
     }
 
@@ -149,7 +172,6 @@ namespace SMF.Editor.Tools
     {
         FirstPartOfName,
         LastPartOfName,
-        AnyPartOfName,
-        Script
+        AnyPartOfName
     }
 }
