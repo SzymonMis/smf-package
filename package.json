@@ -1,6 +1,6 @@
 {
     "name": "com.szymon-mis.smf",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "displayName": "SMF",
     "description": "Collection of unity extensions that speed-ups working with an engine",
     "unity": "2020.3",
