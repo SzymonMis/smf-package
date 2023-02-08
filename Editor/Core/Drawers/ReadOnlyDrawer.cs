@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace SMF.Core
+namespace SMF.Editor.Core
 {
 	/// <summary>
 	/// This class contain custom drawer for ReadOnly attribute.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SMF.Core
+namespace SMF.Editor.Core
 {
 	/// <summary>
 	/// Read Only attribute.
