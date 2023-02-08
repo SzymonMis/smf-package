@@ -1,7 +1,9 @@
 {
     "name": "SMF.Editor.Tools",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:96a404bd88c0c0545b2c0b160e528d46"
+    ],
     "includePlatforms": [
         "Editor"
     ],
