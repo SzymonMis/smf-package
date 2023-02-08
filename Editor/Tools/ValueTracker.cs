@@ -1,23 +1,23 @@
-#if ODIN_INSPECTOR
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
+#endif
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
-#endif
 
 namespace SMF.Editor.Tools
 {
 	#if ODIN_INSPECTOR
-	public class ValueTrackerWindow : OdinEditorWindow
+	public class ValueTracker : OdinEditorWindow
 	{
 		[SerializeField]
 		private List<TreeValuesHolder> _properties = new List<TreeValuesHolder>();
-		private static ValueTrackerWindow _instance;
+		private static ValueTracker _instance;
 		private bool _repaintSheduled;
 		[SerializeField] private float _labelWidth = 200;
 		private bool _showSettings;
@@ -25,7 +25,7 @@ namespace SMF.Editor.Tools
 		[MenuItem("SMF Tools/Value Tracker")]
 		public static void ShowMenu()
 		{
-			_instance = GetWindow<ValueTrackerWindow>();
+			_instance = GetWindow<ValueTracker>();
 			_instance.titleContent = new GUIContent("Value Tracker");
 			_instance.Show();
 		}
@@ -40,7 +40,9 @@ namespace SMF.Editor.Tools
 				{
 					ShowMenu();
 					PropertyTree tree = Sirenix.OdinInspector.Editor.PropertyTree.Create(new SerializedObject(property.serializedObject.targetObject));
+					#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
 					TreeValuesHolder holder = _instance._properties.FirstOrDefault(o => o.Tree.WeakTargets[0] == property.serializedObject.targetObject);
+					#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
 					if (holder == null)
 					{
 						holder = new TreeValuesHolder(tree);
@@ -84,7 +86,9 @@ namespace SMF.Editor.Tools
 			_instance._repaintSheduled = true;
 		}
 
+		#pragma warning disable CS0114 // Member hides inherited member; missing override keyword
 		private void OnDisable()
+		#pragma warning restore CS0114 // Member hides inherited member; missing override keyword
 		{
 			string json = EditorJsonUtility.ToJson(this);
 			EditorPrefs.SetString("OWW_props", json);
@@ -188,7 +192,9 @@ namespace SMF.Editor.Tools
 				}
 				else
 				{
+					#pragma warning disable CS0618 // Type or member is obsolete
 					InspectorUtilities.BeginDrawPropertyTree(holder.Tree, true);
+					#pragma warning restore CS0618 // Type or member is obsolete
 					for (int index = 0; index < holder.ValuePaths.Count; index++)
 					{
 						string path = holder.ValuePaths[index];
@@ -225,8 +231,10 @@ namespace SMF.Editor.Tools
 
 						GUILayout.Space(3);
 						GUILayout.EndHorizontal();
-					}					
+					}
+					#pragma warning disable CS0618 // Type or member is obsolete
 					InspectorUtilities.EndDrawPropertyTree(holder.Tree);
+					#pragma warning restore CS0618 // Type or member is obsolete
 				}
 				SirenixEditorGUI.EndBox();
 			}
@@ -300,10 +308,9 @@ namespace SMF.Editor.Tools
 	[DrawerPriority(100, 0, 0)]
 	public class ValueTrackerWindowContextMenuDrawer<T> : OdinValueDrawer<T>, IDefinesGenericMenuItems
 	{
-		public void PopulateGenericMenu(InspectorProperty property, GenericMenu genericMenu) => genericMenu.AddItem(new GUIContent("Track"), false, () => ValueTrackerWindow.AddWatch(property));
+		public void PopulateGenericMenu(InspectorProperty property, GenericMenu genericMenu) => genericMenu.AddItem(new GUIContent("Track"), false, () => ValueTracker.AddWatch(property));
 
 		protected override void DrawPropertyLayout(GUIContent label) => CallNextDrawer(label);
 	}
-
-#endif
+	#endif
 }

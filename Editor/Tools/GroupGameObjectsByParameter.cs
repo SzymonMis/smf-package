@@ -136,7 +136,7 @@ namespace SMF.Editor.Tools
 
         private bool ValidateString(string text)
         {
-            if (text == string.Empty || text.Length < 3)
+            if (text == null || text == string.Empty || text.Length < 3)
             {
                 return false;
             }
