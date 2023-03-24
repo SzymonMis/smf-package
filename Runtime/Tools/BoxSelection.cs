@@ -1,25 +1,27 @@
 #if UNITY_EDITOR
+
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#endif
+
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace SMF.Editor.Tools
+namespace SMF.Tools
 {
 	[ExecuteInEditMode]
 	public class BoxSelection : MonoBehaviour
-	{		
+	{
 		private BoxCollider selectionArea; // Reference to the box collider used for selection
-
 		public LayerMask selectableLayers; // Layers to include in selection
-
 		public List<GameObject> selectedObjects = new List<GameObject>(); // List of selected objects
-
 		public Transform newParent;
-
 		public Color volumeColor;
 
+		#if ODIN_INSPECTOR
 		[Button("1. Setup")]
+		#endif
 		[ExecuteInEditMode]
 		private void Setup()
 		{
@@ -29,7 +31,9 @@ namespace SMF.Editor.Tools
 			}
 		}
 
+		#if ODIN_INSPECTOR
 		[Button("2. Select GameObjects")]
+		#endif
 		[ExecuteInEditMode]
 		private void SelectGameObjects()
 		{
@@ -46,7 +50,9 @@ namespace SMF.Editor.Tools
 			}
 		}
 
+		#if ODIN_INSPECTOR
 		[Button("3. Set Parent")]
+		#endif
 		[ExecuteInEditMode]
 		private void SetParent()
 		{
@@ -81,15 +87,19 @@ namespace SMF.Editor.Tools
 			ClearGameObjectSelection();
 		}
 
+		#if ODIN_INSPECTOR
 		[Button("4. Clear GameObjects Selection")]
+		#endif
 		[ExecuteInEditMode]
 		private void ClearGameObjectSelection() => selectedObjects.Clear();
 
+		#if ODIN_INSPECTOR
 		[Button("5. Cleanup")]
+		#endif
 		[ExecuteInEditMode]
 		private void CleanupSelector()
 		{
-			if(newParent == null)
+			if (newParent == null)
 			{
 				DestroyImmediate(selectionArea);
 				DestroyImmediate(this);
@@ -114,4 +124,5 @@ namespace SMF.Editor.Tools
 		}
 	}
 }
+
 #endif
