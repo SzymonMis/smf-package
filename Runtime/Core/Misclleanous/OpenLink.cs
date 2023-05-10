@@ -1,3 +1,9 @@
+/*
+* Copyright (C) 2023
+* by Szymon Miś
+* All rights reserved;
+*/
+
 using UnityEngine;
 
 namespace SMF.Core

@@ -1,3 +1,9 @@
+/*
+* Copyright (C) 2023
+* by Szymon Miś
+* All rights reserved;
+*/
+
 namespace SMF.Editor.Tools
 {
 	using System.IO;
@@ -39,13 +45,13 @@ namespace SMF.Editor.Tools
 
 			if (GUILayout.Button("Inject Copyright"))
 			{
-				copyrightNotice = $"/*\n* {copyrightTemplate} {copyrightYear}\n* by {authorName}\n* {licenseTemplate}\n */";
+				copyrightNotice = $"/*\n* {copyrightTemplate} {copyrightYear}\n* by {authorName}\n* {licenseTemplate}\n*/\n\n";
 				InjectCopyright();
 			}
 
 			if (GUILayout.Button("Revoke Copyright"))
 			{
-				copyrightNotice = $"/*\n* {copyrightTemplate} {copyrightYear}\n* by {authorName}\n* {licenseTemplate}\n */";
+				copyrightNotice = $"/*\n* {copyrightTemplate} {copyrightYear}\n* by {authorName}\n* {licenseTemplate}\n*/\n\n";
 				RevokeCopyright();
 			}
 		}
