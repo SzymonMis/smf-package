@@ -23,4 +23,17 @@ namespace SMF.Core
 		// Submit is called when the user submits/activates the object, such as pressing Enter while it is selected
 		void Submit();
 	}
+
+	/// <summary>
+	/// Enum with every interaction type
+	/// </summary>
+	public enum InteractionType
+	{
+		Clicked,
+		Hovered,
+		Selected,
+		Unhovered,
+		Unselected,
+		Submit
+	}
 }

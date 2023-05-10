@@ -14,15 +14,6 @@ namespace SMF.Core
 	[RequireComponent(typeof(AudioSource))]
 	public class UISounds : MonoBehaviour, IInteractable
 	{
-		public enum SoundType
-		{
-			Clicked,
-			Hovered,
-			Selected,
-			Submit,
-			None
-		}
-
 		private AudioSource audioSource;
 
 		/// <summary>
@@ -30,7 +21,7 @@ namespace SMF.Core
 		/// </summary>
 		[ShowInInspector]
 		[Tooltip("Map sound types to corresponding audio clips")]
-		private Dictionary<SoundType, AudioClip> soundEffects = new Dictionary<SoundType, AudioClip>();
+		private Dictionary<InteractionType, AudioClip> soundEffects = new Dictionary<InteractionType, AudioClip>();
 
 		private void Awake()
 		{
@@ -44,40 +35,39 @@ namespace SMF.Core
 		/// Plays the sound effect associated with the specified sound type.
 		/// </summary>
 		/// <param name="soundType">The type of sound to play.</param>
-		private void PlaySound(SoundType soundType)
+		private void PlaySound(InteractionType soundType)
 		{
-			if (soundType == SoundType.None)
-			{
-				return;
-			}
-
 			if (soundEffects.TryGetValue(soundType, out AudioClip clip))
 			{
 				audioSource.Stop();
 				audioSource.PlayOneShot(clip);
 			}
+			else
+			{
+				return;
+			}
 		}
 
-		public void Clicked() => PlaySound(SoundType.Clicked);
+		public void Clicked() => PlaySound(InteractionType.Clicked);
 
-		public void Hovered() => PlaySound(SoundType.Hovered);
+		public void Hovered() => PlaySound(InteractionType.Hovered);
 
-		public void Selected() => PlaySound(SoundType.Selected);
+		public void Selected() => PlaySound(InteractionType.Selected);
 
-		public void Unhovered() => PlaySound(SoundType.None);
+		public void Unhovered() => PlaySound(InteractionType.Unhovered);
 
-		public void Unselected() => PlaySound(SoundType.None);
+		public void Unselected() => PlaySound(InteractionType.Unselected);
 
-		public void Submit() => PlaySound(SoundType.Submit);
+		public void Submit() => PlaySound(InteractionType.Submit);
 
 		[Button(ButtonSizes.Large), GUIColor(0, 1, 0)]
 		private void InitializeDictionary()
 		{
 			soundEffects.Clear();
-			soundEffects.Add(SoundType.Clicked, null);
-			soundEffects.Add(SoundType.Hovered, null);
-			soundEffects.Add(SoundType.Selected, null);
-			soundEffects.Add(SoundType.Submit, null);
+			soundEffects.Add(InteractionType.Clicked, null);
+			soundEffects.Add(InteractionType.Hovered, null);
+			soundEffects.Add(InteractionType.Selected, null);
+			soundEffects.Add(InteractionType.Submit, null);
 		}
 	}
 }
