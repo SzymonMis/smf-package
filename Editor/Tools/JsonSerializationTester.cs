@@ -1,14 +1,16 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using Newtonsoft.Json;
 using SMF.Editor.Core;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Unity.Plastic.Newtonsoft.Json;
 
 #if ODIN_INSPECTOR
+
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+
 #endif
 
 namespace SMF.Editor.Tools
@@ -49,6 +51,7 @@ namespace SMF.Editor.Tools
 		/// Message shown to the user. Either error or deserialized fine.
 		/// </summary>
 		private static string _infoBoxMessage = "";
+
 		/// <summary>
 		/// A flag to record if an exception was thrown on deserialize.
 		/// </summary>
@@ -145,7 +148,6 @@ namespace SMF.Editor.Tools
 				// since it's 21st century, we try to figure out if the user forgot to check the isList flag and fix it.
 				try
 				{
-
 					dynamic buffer = JsonConvert.DeserializeObject(inputString, deserializationType);
 					_deserializedObject = Convert.ChangeType(buffer, deserializationType);
 				}
@@ -209,7 +211,6 @@ namespace SMF.Editor.Tools
 			_updatingInputString = false;
 		}
 
-
 		/// <summary>
 		/// We use this dummy method because we don't want show the _infoBoxMessage field in the inspector. So InfoBoxes attributes are put on this method.
 		/// </summary>
@@ -220,7 +221,7 @@ namespace SMF.Editor.Tools
 		private static void DummyMethodForInfoBox() { }
 
 		/// <summary>
-		/// Show it show info box. 
+		/// Show it show info box.
 		/// </summary>
 		private static bool ShowInfoBox => string.IsNullOrEmpty(_infoBoxMessage) == false;
 
@@ -235,7 +236,7 @@ namespace SMF.Editor.Tools
 		private static bool ShowNormalInfoBox => ShowInfoBox && _hadError == false;
 
 		/// <summary>
-		/// Should we show the deserialized model?. We want to keep this shown until Test Deserialization 
+		/// Should we show the deserialized model?. We want to keep this shown until Test Deserialization
 		/// is pressed.
 		/// </summary>
 		private static bool ShowDeserializedModel => _deserializedObject != null;
@@ -246,7 +247,11 @@ namespace SMF.Editor.Tools
 		/// </summary>
 		private static void InputStringValueChanged()
 		{
-			if (_updatingInputString) return;
+			if (_updatingInputString)
+			{
+				return;
+			}
+
 			_infoBoxMessage = string.Empty;
 			_jsonFormatted = false;
 		}
