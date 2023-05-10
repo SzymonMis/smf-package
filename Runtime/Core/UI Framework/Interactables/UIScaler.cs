@@ -15,9 +15,9 @@ namespace SMF.Core
 	public class UIScaler : UITransition, IInteractable
 	{
 		[SerializeField] private int hoverSortingOrder = 100;
-		[SerializeField] private float transitionSpeed = 1.5f;
+		[SerializeField] private float transitionSpeed = 20f;
 		[SerializeField] private float targetHoverScale = 1.2f;
-		[SerializeField] private float targetClickScale = 1.2f;
+		[SerializeField] private float targetClickScale = 1.0f;
 
 		private Canvas canvas;
 		private Vector3 originalScale;
