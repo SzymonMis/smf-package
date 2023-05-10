@@ -56,3 +56,4 @@ namespace SMF.Editor.Tools
 			Debug.Log("Total lines of code: " + totalLines);
 		}
 	}
+}
