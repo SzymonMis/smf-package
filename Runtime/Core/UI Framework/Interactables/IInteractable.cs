@@ -34,6 +34,7 @@ namespace SMF.Core
 		Selected,
 		Unhovered,
 		Unselected,
-		Submit
+		Submit,
+		None
 	}
 }

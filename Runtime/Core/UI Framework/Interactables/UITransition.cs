@@ -1,15 +1,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if ODIN_INSPECTOR
+
+using Sirenix.OdinInspector;
+
+#endif
+
 namespace SMF.Core
 {
 	public abstract class UITransition : MonoBehaviour
 	{
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.Linear)]
+#endif
+		[ReadOnly]
 		[SerializeField] protected AnimationCurve linearTransition = AnimationCurve.Linear(0, 0, 1, 1);
+
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.EaseIn)]
+#endif
+
+		[ReadOnly]
 		[SerializeField] protected AnimationCurve easeInTransition = AnimationCurve.Linear(0, 0, 1, 1);
+
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.EaseOut)]
+#endif
+
+		[ReadOnly]
 		[SerializeField] protected AnimationCurve easeOutTransition = AnimationCurve.Linear(0, 0, 1, 1);
+
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.EaseInOut)]
+#endif
+
+		[ReadOnly]
 		[SerializeField] protected AnimationCurve easeInOutTransition = AnimationCurve.Linear(0, 0, 1, 1);
 
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.Elastic)]
+#endif
+
+		[ReadOnly]
 		[SerializeField]
 		protected AnimationCurve elasticTransition = new AnimationCurve(new Keyframe[]
 		{
@@ -19,6 +57,12 @@ namespace SMF.Core
 			new Keyframe(1, 1, 0, 0)
 		});
 
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.Bounce)]
+#endif
+
+		[ReadOnly]
 		[SerializeField]
 		protected AnimationCurve bounceTransition = new AnimationCurve(new Keyframe[]
 		{
@@ -28,11 +72,19 @@ namespace SMF.Core
 			new Keyframe(1, 1, 0, 0)
 		});
 
+#if ODIN_INSPECTOR
+
+		[ShowIf("transitionType", TransitionType.Custom)]
+#endif
+
+		[ReadOnly]
 		[SerializeField] protected AnimationCurve customTransition;
 
 		[SerializeField] protected TransitionType transitionType;
 
 		protected Dictionary<TransitionType, AnimationCurve> transitionFunctions;
+
+		[SerializeField] protected float transitionSpeed = 10f;
 
 		/// <summary>
 		/// This function sets up the animation curves and dictionary of transition functions for use in the script.
