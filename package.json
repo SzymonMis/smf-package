@@ -1,6 +1,6 @@
 {
     "name": "com.szymon-mis.smf",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "displayName": "SMF",
     "description": "Collection of unity extensions that speed-ups working with an engine",
     "unity": "2020.3",
@@ -11,5 +11,19 @@
         "name": "Szymon Miś",
         "email": "hello@szymon-mis.pl",
         "url": "https://szymon-mis.pl"
+    },
+    "scopedRegistries": [
+        {
+            "name": "package.openupm.com",
+            "url": "https://package.openupm.com",
+            "scopes": [
+                "com.oss.leantween"
+            ]
+        }
+    ],
+    "dependencies": {
+        "com.unity.localization": "1.3.2",
+        "com.oss.leantween": "2.50.4",
+        "com.github.siccity.xnode": "https://github.com/Siccity/xNode.git"
     }
 }

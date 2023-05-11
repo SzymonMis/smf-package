@@ -1,3 +1,9 @@
+/*
+* Copyright (C) 2023
+* by Szymon Miś
+* All rights reserved;
+*/
+
 using SMF.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
