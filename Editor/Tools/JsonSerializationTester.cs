@@ -10,7 +10,7 @@ using UnityEngine;
 using SMF.Editor.Core;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 #if ODIN_INSPECTOR
 
