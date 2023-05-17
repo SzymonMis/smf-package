@@ -4,6 +4,8 @@
 * All rights reserved;
 */
 
+using UnityEngine;
+
 namespace SMF.Core
 {
 	/// <summary>
@@ -11,6 +13,7 @@ namespace SMF.Core
 	/// </summary>
 	public class UISubWindow : UIWindow
 	{
+		[Header("Parent Setup")]
 		public UIMainWindow parentWindow;
 
 		public void InitSubWindow(UIMainWindow parentWindow) => this.parentWindow = parentWindow;
