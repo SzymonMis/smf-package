@@ -36,8 +36,14 @@ namespace SMF.Core
 		// Stack to keep track of the opened UIWindow instances
 		private Stack<UIWindow> windowStack;
 
+		public static UIWindowManager instance;
+
 		// Initialize the windowStack during windows
-		private void Awake() => windowStack = new Stack<UIWindow>();
+		private void Awake()
+		{
+			windowStack = new Stack<UIWindow>();
+			instance = this;
+		}
 
 		// Open the first window on start
 		private void Start()

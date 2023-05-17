@@ -11,5 +11,8 @@ namespace SMF.Core
 	/// </summary>
 	public class UISubWindow : UIWindow
 	{
+		public UIMainWindow parentWindow;
+
+		public void InitSubWindow(UIMainWindow parentWindow) => this.parentWindow = parentWindow;
 	}
 }

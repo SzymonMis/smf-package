@@ -87,7 +87,7 @@ namespace SMF.Core
 			gameObject.SetActive(false);
 
 			// Store the open and closed positions of the UIWindow
-			openedPosition = rectTransform.anchoredPosition;
+			openedPosition = new Vector3(0, 0, 0);
 			closedPosition = CalculatePosition(closeDirection);
 		}
 

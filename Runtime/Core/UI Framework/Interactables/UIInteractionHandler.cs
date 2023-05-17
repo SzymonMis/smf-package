@@ -7,14 +7,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace SMF.Core
 {
+	[RequireComponent(typeof(Button))]
 	public class UIInteractionHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
 	{
 		private List<IInteractable> interactables = new List<IInteractable>();
 
 		public List<IInteractable> Interactables => interactables;
+
+		private Button button;
+
+		private void Awake() => button = GetComponent<Button>();
 
 		private void OnEnable() => interactables = new List<IInteractable>(GetComponentsInChildren<IInteractable>());
 
@@ -48,6 +54,7 @@ namespace SMF.Core
 		{
 			var tempInteractables = new List<IInteractable>(Interactables);
 			tempInteractables?.ForEach(x => x.Hovered());
+			button.Select();
 		}
 
 		/// <summary>

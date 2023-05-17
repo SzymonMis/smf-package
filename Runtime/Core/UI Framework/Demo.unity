@@ -484,7 +484,7 @@ MonoBehaviour:
         m_MethodName: OpenWindow
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1854033614}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: SMF.Core.UIWindow, SMF.Core
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windows:
   - {fileID: 1674060048}
-  - {fileID: 1854033614}
+  - {fileID: 0}
   - {fileID: 498912426}
   openWindowOnStart: 1
   startupWindow: {fileID: 1674060048}
@@ -692,6 +692,7 @@ MonoBehaviour:
   transitionOffset: 0
   enableAlphaFade: 1
   transitionDuration: 0.5
+  subwindows: []
 --- !u!225 &498912427
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1955,6 +1956,7 @@ MonoBehaviour:
   transitionOffset: 0
   enableAlphaFade: 1
   transitionDuration: 0.5
+  subwindows: []
 --- !u!225 &1674060049
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2445,7 +2447,7 @@ GameObject:
   - component: {fileID: 1854033617}
   - component: {fileID: 1854033616}
   - component: {fileID: 1854033615}
-  - component: {fileID: 1854033614}
+  - component: {fileID: 1854033618}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -2475,25 +2477,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1854033614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854033612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6ea3b3db5af0c4dab9697e57eb6f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 1674060048}
-  enableTransition: 1
-  openDirection: 1
-  closeDirection: 1
-  transitionOffset: 0
-  enableAlphaFade: 1
-  transitionDuration: 0.5
 --- !u!225 &1854033615
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2544,6 +2527,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854033612}
   m_CullTransparentMesh: 1
+--- !u!114 &1854033618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854033612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd2205f121dbee40a9c6c67d79db239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  enableTransition: 1
+  openDirection: 1
+  closeDirection: 1
+  transitionOffset: 0
+  enableAlphaFade: 1
+  transitionDuration: 0.5
 --- !u!1 &1932651567
 GameObject:
   m_ObjectHideFlags: 0

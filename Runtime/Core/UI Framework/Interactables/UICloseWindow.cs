@@ -3,11 +3,9 @@ using UnityEngine;
 namespace SMF.Core
 {
 	[RequireComponent(typeof(UIInteractionHandler))]
-	public class UIOpenWindow : MonoBehaviour, IInteractable
+	public class UICloseWindow : MonoBehaviour, IInteractable
 	{
-		public UIWindow window;
-
-		public void Clicked() => UIWindowManager.instance.OpenWindow(window);
+		public void Clicked() => UIWindowManager.instance.CloseWindow();
 
 		public void Hovered()
 		{

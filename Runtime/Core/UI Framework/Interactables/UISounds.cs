@@ -7,6 +7,7 @@
 #if ODIN_INSPECTOR
 
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,15 +19,16 @@ namespace SMF.Core
 	/// </summary>
 	[RequireComponent(typeof(UIInteractionHandler))]
 	[RequireComponent(typeof(AudioSource))]
-	public class UISounds : MonoBehaviour, IInteractable
+	public class UISounds : SerializedMonoBehaviour, IInteractable
 	{
 		private AudioSource audioSource;
 
 		/// <summary>
 		/// A dictionary that maps SoundType enum values to corresponding audio clips.
 		/// </summary>
-		[ShowInInspector]
 		[Tooltip("Map sound types to corresponding audio clips")]
+		[ShowInInspector]
+		[OdinSerialize]
 		private Dictionary<InteractionType, AudioClip> soundEffects = new Dictionary<InteractionType, AudioClip>();
 
 		private void Awake()
@@ -66,6 +68,8 @@ namespace SMF.Core
 
 		public void Submit() => PlaySound(InteractionType.Submit);
 
+#if UNITY_EDITOR
+
 		[Button(ButtonSizes.Large), GUIColor(0, 1, 0)]
 		private void InitializeDictionary()
 		{
@@ -75,6 +79,8 @@ namespace SMF.Core
 			soundEffects.Add(InteractionType.Selected, null);
 			soundEffects.Add(InteractionType.Submit, null);
 		}
+
+#endif
 	}
 }
 
