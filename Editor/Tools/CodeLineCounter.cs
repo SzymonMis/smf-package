@@ -11,16 +11,13 @@ using UnityEngine;
 
 namespace SMF.Editor.Tools
 {
-	public class CodeLineCounterEditor : EditorWindow
+	public class CodeLineCounter : EditorWindow
 	{
 		private string folderPath = "Assets/";
 		private int totalLines;
 
 		[MenuItem("SMF Tools/Code Line Counter")]
-		public static void ShowWindow()
-		{
-			GetWindow<CodeLineCounterEditor>("Code Line Counter");
-		}
+		public static void ShowWindow() => GetWindow<CodeLineCounter>("Code Line Counter");
 
 		private void OnGUI()
 		{

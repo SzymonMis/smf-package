@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace SMF.Editor.Tools
 {
-	public class TextureToHDRPMaskMapWindow : EditorWindow
+	public class TexturesToHDRPMaskmap : EditorWindow
 	{
 		private Texture2D metallicTexture;
 		private Texture2D smoothnessTexture;
@@ -18,7 +18,7 @@ namespace SMF.Editor.Tools
 		[MenuItem("SMF Tools/Convert Textures to HDRP Mask Map")]
 		public static void ShowWindow()
 		{
-			EditorWindow.GetWindow(typeof(TextureToHDRPMaskMapWindow), false, "Convert Textures to HDRP Mask Map");
+			EditorWindow.GetWindow(typeof(TexturesToHDRPMaskmap), false, "Convert Textures to HDRP Mask Map");
 		}
 
 		private void OnGUI()
