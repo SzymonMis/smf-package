@@ -4,8 +4,10 @@
 * All rights reserved;
 */
 
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SMF.Core
 {
@@ -15,9 +17,16 @@ namespace SMF.Core
 	public class UIMainWindow : UIWindow
 	{
 		[Header("Subwindows config")]
+		public bool processSubWindows = true;
+
+		[ShowIf("processSubWindows")]
 		public List<UISubWindow> subwindows = new List<UISubWindow>();
 
-		public bool processSubWindows = true;
+		[Header("Event Support Settings")]
+		public bool firstSelectedSupport = true;
+
+		[ShowIf("firstSelectedSupport")]
+		public GameObject firstSelectedObject;
 
 		protected override void Awake()
 		{
@@ -38,6 +47,11 @@ namespace SMF.Core
 			if (processSubWindows)
 			{
 				subwindows?.ForEach(x => x.Open());
+			}
+
+			if (firstSelectedSupport)
+			{
+				EventSystem.current.SetSelectedGameObject(firstSelectedObject);
 			}
 		}
 

@@ -15,9 +15,7 @@ namespace SMF.Core
 		{
 		}
 
-		public void Submit()
-		{
-		}
+		public void Submit() => UIWindowManager.instance.CloseWindow();
 
 		public void Unhovered()
 		{
