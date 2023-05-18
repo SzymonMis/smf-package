@@ -7,16 +7,18 @@
 #if ODIN_INSPECTOR
 
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace SMF.Core
 {
-	public class UIElementEvents : MonoBehaviour, IInteractable
+	public class UIElementEvents : SerializedMonoBehaviour, IInteractable
 	{
-		[ShowInInspector]
 		[Tooltip("Map sound types to corresponding audio clips")]
+		[ShowInInspector]
+		[OdinSerialize]
 		private Dictionary<InteractionType, UnityEvent> eventMap = new Dictionary<InteractionType, UnityEvent>();
 
 		private void InvokeEvent(InteractionType eventType)
@@ -43,6 +45,8 @@ namespace SMF.Core
 
 		public void Submit() => InvokeEvent(InteractionType.Submit);
 
+#if UNITY_EDITOR
+
 		[Button(ButtonSizes.Large), GUIColor(0, 1, 0)]
 		private void InitializeDictionary()
 		{
@@ -54,6 +58,8 @@ namespace SMF.Core
 			eventMap.Add(InteractionType.Unselected, new UnityEvent());
 			eventMap.Add(InteractionType.Submit, new UnityEvent());
 		}
+
+#endif
 	}
 }
 
