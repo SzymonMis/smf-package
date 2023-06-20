@@ -13,6 +13,6 @@
         "url": "https://szymon-mis.pl"
     },    
     "dependencies": {
-        "com.unity.localization": "1.3.2",
+        "com.unity.localization": "1.3.2"
     }
 }
